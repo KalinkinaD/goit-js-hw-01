@@ -35,6 +35,7 @@ gallery.addEventListener('click', event => {
   if (image.matches('img')) {
     lightbox.classList.add('is-open');
     lightboxImg.setAttribute('src', image.dataset.source);
+    window.addEventListener('keydown', handleKeyPress);
   }
 });
 
@@ -47,6 +48,7 @@ lightboxContent.addEventListener('click', closeModalByDiv);
 function closeModal() {
   lightbox.classList.remove('is-open');
   lightboxImg.src = '';
+  window.removeEventListener('keydown', handleKeyPress);
 }
 
 function closeModalByDiv(event) {
@@ -55,3 +57,55 @@ function closeModalByDiv(event) {
   }
   closeModal();
 }
+
+function handleKeyPress(event) {
+  if (event.code !== 'Escape') {
+    return;
+  }
+  closeModal();
+}
+
+// переключение открытых картинок
+let imgSrc;
+let index;
+const galleryItem = gallery.children;
+for (let i = 0; i < galleryItem.length; i++) {
+  galleryItem[i].addEventListener('click', event => {
+    event.preventDefault();
+    index = i;
+    changeImg();
+  });
+}
+function changeImg() {
+  imgSrc = galleryItem[index].querySelector('img').getAttribute('data-source');
+  lightboxImg.src = imgSrc;
+}
+function prev() {
+  if (index === 0) {
+    index = galleryItem.length - 1;
+  } else {
+    index--;
+  }
+  changeImg();
+}
+
+function next() {
+  if (index == galleryItem.length - 1) {
+    index = 0;
+  } else {
+    index++;
+  }
+  changeImg();
+}
+document.onkeydown = event => {
+  if (imgSrc) {
+    if (event.code == 'ArrowRight') {
+      next();
+    }
+    if (event.code == 'ArrowLeft') {
+      prev();
+    } else {
+      return;
+    }
+  }
+};
