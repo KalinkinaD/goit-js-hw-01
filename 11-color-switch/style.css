@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  background-color: gray;
+}
+
+button {
+  padding: 5px 10px;
+  width: 200px;
+  height: 100px;
+  border: 2px solid #000000;
+  font-size: 32px;
+  font-weight: 600;
+  background-color: rgb(116, 109, 109);
+  cursor: pointer;
+}
+
+button:focus,
+button:hover {
+  box-shadow: 0 0 0 2px #cbd6ee;
+  border: none;
+}
