@@ -1,10 +1,15 @@
 export default function fetchCountries(name) {
-  return fetch(`https://restcountries.eu/rest/v2/name/${name}`)
+  return fetch(`https://restcountries.eu/rest/v2/name/${name}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+    },
+  })
     .then(response => {
-      if (name) {
+      if (response.ok) {
         return response.json();
       } else {
-        return;
+        return false;
       }
     })
     .catch(error => console.log(error));
