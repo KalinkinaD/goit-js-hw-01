@@ -26,6 +26,7 @@ img {
 body {
   height: 100vh;
   background-image: url('https://wallpaperaccess.com/full/419597.jpg');
+  background-size: cover;
 }
 
 #search {
