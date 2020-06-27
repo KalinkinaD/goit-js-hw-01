@@ -1,5 +1,5 @@
-export default function fetchCountries(name) {
-  return fetch(`https://restcountries.eu/rest/v2/name/${name}`, {
+export default function fetchCountries(searchQuery) {
+  return fetch(`https://restcountries.eu/rest/v2/name/${searchQuery}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -12,5 +12,7 @@ export default function fetchCountries(name) {
         return false;
       }
     })
-    .catch(error => console.log(error));
+    .catch(() => {
+      return false;
+    });
 }
