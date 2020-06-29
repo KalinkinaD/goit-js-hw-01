@@ -6,6 +6,10 @@ import debounce from 'lodash.debounce';
 import countryList from './templates/countries.hbs';
 import country from './templates/country.hbs';
 
+const searchForm = document.querySelector('#search');
+searchForm.addEventListener('submit', event => {
+  event.preventDefault();
+});
 let inputText = document.querySelector('.input_text');
 
 let search = async () => {
@@ -27,8 +31,8 @@ let search = async () => {
   }
 };
 inputText.addEventListener('input', debounce(search, 500));
-window.addEventListener('keypress', event => {
-  if (event.keyCode == 13) {
-    event.preventDefault();
-  }
-});
+// window.addEventListener('keypress', event => {
+//   if (event.keyCode == 13) {
+//     event.preventDefault();
+//   }
+// });
