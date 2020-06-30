@@ -30,6 +30,15 @@ let search = async () => {
     document.querySelector('.js-result').innerHTML = countryList(result);
   }
 };
+const showError = text => {
+  error({
+    text: text,
+    closer: false,
+    sticker: false,
+    destroy: true,
+    delay: 500,
+  });
+};
 inputText.addEventListener('input', debounce(search, 500));
 // window.addEventListener('keypress', event => {
 //   if (event.keyCode == 13) {
